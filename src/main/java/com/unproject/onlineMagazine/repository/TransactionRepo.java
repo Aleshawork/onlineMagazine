@@ -1,6 +1,6 @@
 package com.unproject.onlineMagazine.repository;
 
-import com.unproject.onlineMagazine.model.Transaction;
+import com.unproject.onlineMagazine.model.dao.Transaction;
 import com.unproject.onlineMagazine.repository.mapper.TransactionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
@@ -39,7 +39,7 @@ public class TransactionRepo implements CrudOperations<Transaction> {
         //todo:: обновить только изменившиеся записи
     }
 
-    @Override
+
     public void deleteById(Long id) {
         jdbc.update(
                 "delete from transactions where id=?",

@@ -6,7 +6,6 @@ public interface CrudOperations<T> {
     public T getById(Long id);
     public void insert(T t);
     public void update(T t);
-    public void deleteById(Long id);
     public List<T> getAll();
 
 }

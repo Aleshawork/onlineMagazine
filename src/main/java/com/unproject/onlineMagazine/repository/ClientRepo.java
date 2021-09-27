@@ -1,19 +1,18 @@
 package com.unproject.onlineMagazine.repository;
 
-import com.unproject.onlineMagazine.model.Client;
+import com.unproject.onlineMagazine.model.dao.Client;
 import com.unproject.onlineMagazine.repository.mapper.ClientMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.stereotype.Repository;
 
-import java.beans.Transient;
 import java.util.List;
 import java.util.Map;
 
 @Repository
 public class ClientRepo implements CrudOperations<Client>{
 
-    @Autowired
+
     private final NamedParameterJdbcOperations jdbc;
 
 
@@ -56,12 +55,12 @@ public class ClientRepo implements CrudOperations<Client>{
         //todo: замена только изменившихся полей
     }
 
-    @Override
+
     public void deleteById(Long id) {
 
         jdbc.update(
-                "delete from client where id=:id",
-                Map.of("id",id));
+                "update client set status=:status where id=:id",
+                Map.of("status","of","id",id));
     }
 
     public Client findByName(String name) {
@@ -71,10 +70,11 @@ public class ClientRepo implements CrudOperations<Client>{
                 new ClientMapper());
     }
 
-    public void deleteByContactId(Long id) {
-        jdbc.update(
-                "delete from client where contact_id=:contact_id",
-                Map.of("contact_id",id)
-        );
+    public Client findByLogin(String login) {
+        return jdbc.queryForObject(
+                "select * from client where login=:login",
+                Map.of("login",login),
+                new ClientMapper());
     }
+
 }

@@ -1,18 +1,20 @@
 package com.unproject.onlineMagazine.repository;
 
-import com.unproject.onlineMagazine.model.Transaction;
+import com.unproject.onlineMagazine.model.dao.Transaction;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
 
 import java.sql.Date;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-@JdbcTest
+@JdbcTest(excludeAutoConfiguration = {FlywayAutoConfiguration.class})
+@PropertySource("classpath:application-test.properties")
 @Import(TransactionRepo.class)
 class TransactionRepoTest {
     private int START_COUNT;

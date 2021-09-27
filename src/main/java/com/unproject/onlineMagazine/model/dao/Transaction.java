@@ -1,4 +1,4 @@
-package com.unproject.onlineMagazine.model;
+package com.unproject.onlineMagazine.model.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

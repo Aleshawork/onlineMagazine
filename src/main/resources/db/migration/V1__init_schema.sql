@@ -10,7 +10,8 @@ create table if not exists client(
     password varchar(30),
     name varchar(25),
     email varchar(30),
-    contact_id int references contact(id)
+    contact_id int references contact(id),
+    status varchar(4)
     );
 
 create table if not exists warehouse(

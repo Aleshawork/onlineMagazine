@@ -1,6 +1,6 @@
 package com.unproject.onlineMagazine.repository;
 
-import com.unproject.onlineMagazine.model.Product;
+import com.unproject.onlineMagazine.model.dao.Product;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class ProductRepo implements CrudOperations<Product> {
 
     }
 
-    @Override
+
     public void deleteById(Long id) {
 
     }

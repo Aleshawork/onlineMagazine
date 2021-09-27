@@ -1,4 +1,4 @@
-package com.unproject.onlineMagazine.model;
+package com.unproject.onlineMagazine.model.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,12 +16,14 @@ public class Client {
     private String name;
     private String email;
     private Long contact_id;
+    private String status;
 
-    public Client(String login, String password, String name, String email, Long contact_id) {
+    public Client(String login, String password, String name, String email, Long contact_id,String status) {
         this.login = login;
         this.password = password;
         this.name = name;
         this.email = email;
         this.contact_id = contact_id;
+        this.status = status;
     }
 }

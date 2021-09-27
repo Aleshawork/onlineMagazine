@@ -1,6 +1,6 @@
 package com.unproject.onlineMagazine.repository;
 
-import com.unproject.onlineMagazine.model.Orders;
+import com.unproject.onlineMagazine.model.dao.Orders;
 import com.unproject.onlineMagazine.repository.mapper.OrdersMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
@@ -45,7 +45,6 @@ public class OrdersRepo implements CrudOperations<Orders>{
     }
 
 
-    @Override
     public void deleteById(Long id) {
         jdbc.update(
                 "delete from orders where id=?",

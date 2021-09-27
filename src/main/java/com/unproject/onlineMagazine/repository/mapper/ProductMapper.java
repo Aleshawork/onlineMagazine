@@ -1,6 +1,6 @@
 package com.unproject.onlineMagazine.repository.mapper;
 
-import com.unproject.onlineMagazine.model.Product;
+import com.unproject.onlineMagazine.model.dao.Product;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

@@ -1,5 +1,5 @@
 package com.unproject.onlineMagazine.repository;
-import com.unproject.onlineMagazine.model.Contact;
+import com.unproject.onlineMagazine.model.dao.Contact;
 import com.unproject.onlineMagazine.repository.mapper.ContactMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
@@ -11,8 +11,6 @@ import java.util.List;
 
 @Repository
 public class ContactRepo implements CrudOperations<Contact>{
-
-
 
     private final JdbcOperations jdbc;
     private final ClientRepo clientRepo;
@@ -46,12 +44,6 @@ public class ContactRepo implements CrudOperations<Contact>{
         //todo: обновлять только с изменившимися полями
     }
 
-    @Transactional
-    @Override
-    public void deleteById(Long id) {
-        clientRepo.deleteByContactId(id);
-        jdbc.update("delete from contact where id=?",id);
-    }
 
     @Override
     public List<Contact> getAll() {
