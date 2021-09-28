@@ -4,11 +4,16 @@ import com.unproject.onlineMagazine.TestDataHandler;
 import com.unproject.onlineMagazine.model.dto.ClientInfoDto;
 import com.unproject.onlineMagazine.repository.ClientRepo;
 import com.unproject.onlineMagazine.repository.ContactRepo;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
+
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -35,11 +40,16 @@ class ClientServiceTest {
         when(contactRepo.getById(1L)).thenReturn(
                 TestDataHandler.getTestContact()
         );
+        when(clientRepo.findByLogin("Ira")).thenThrow(new IncorrectResultSizeDataAccessException(12));
 
-
-        ClientInfoDto testedObject = clientService.getPersonInformationByLogin("Alesha");
+        ClientInfoDto testedObject = clientService.getPersonInformationByLogin("Alesha").get();
         assertEquals(testedObject.getClientPersonalDto().getEmail(),"alesha@mail.ru");
         assertEquals(testedObject.getContactDto().getAdress(),"Moscov, Popovo 21 2");
+
+        Assertions.assertThrows(DataAccessException.class,
+                ()->{
+            clientRepo.findByLogin("Ira");
+                });
 
     }
 

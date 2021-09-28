@@ -7,13 +7,17 @@ import com.unproject.onlineMagazine.model.dto.ClientPersonalDto;
 import com.unproject.onlineMagazine.model.dto.ContactDto;
 import com.unproject.onlineMagazine.repository.ClientRepo;
 import com.unproject.onlineMagazine.repository.ContactRepo;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+@Slf4j
 @Service
 public class ClientService {
 
@@ -21,13 +25,14 @@ public class ClientService {
     private final ContactRepo contactRepo;
 
 
+    @Autowired
     public ClientService(ClientRepo clientRepo, ContactRepo contactRepo) {
         this.clientRepo = clientRepo;
         this.contactRepo = contactRepo;
     }
 
     @Transactional
-    public ClientInfoDto getPersonInformationByLogin(String login){
+    public Optional<ClientInfoDto>  getPersonInformationByLogin(String login){
         ClientInfoDto clientInfoDto = new ClientInfoDto();
         try {
             Client client = clientRepo.findByLogin(login);
@@ -47,9 +52,10 @@ public class ClientService {
             );
 
         }catch(DataAccessException ex){
-            System.out.println(ex.getLocalizedMessage());
+            log.warn("User with login:{} not found!",login);
+            return Optional.empty();
         }
-        return clientInfoDto;
+        return Optional.of(clientInfoDto);
 
     }
 
@@ -75,6 +81,8 @@ public class ClientService {
             );
         }
         return clientInfoDtoList;
-
     }
+
+
+
 }

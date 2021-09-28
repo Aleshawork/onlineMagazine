@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Managing</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="theme-color" content="#7952b3">
+</head>
+<body>
+<div>
+    <h1 class="display-2" th:align="center" >OnlineMagazine</h1>
+</div>
+<div>
+    <table id="clientTable" class="table table-bordered" th:align="center" >
+        <thead class=" thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Login</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Telephone</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="client : ${listClient} " >
+            <td th:text="${client.getClientPersonalDto().getName()}" th:scope="row"></td>
+            <td th:text="${client.getClientPersonalDto().getLogin()}"></td>
+            <td th:text="${client.getClientPersonalDto().getEmail()}"></td>
+            <td th:text="${client.getContactDto().getAdress()}"></td>
+            <td th:text="${client.getContactDto().getTelephone_number()}">
+                <a></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,6 +1,7 @@
 package com.unproject.onlineMagazine.repository;
 
 import com.unproject.onlineMagazine.model.dao.Client;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -11,6 +12,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 
 import java.util.List;
 
@@ -30,6 +33,12 @@ class ClientRepoTest {
     @Test
     void getById() {
         assertThat(clientRepo.getById(1L).getName()).isEqualTo("Alexey");
+        Assertions.assertThrows(
+                DataAccessException.class,
+                ()->{
+                    clientRepo.getById(6L);
+                }
+        );
     }
 
 
