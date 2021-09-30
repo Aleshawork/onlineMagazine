@@ -25,8 +25,9 @@ public class CourierRepo implements CrudOperations<Courier> {
     public Courier getById(Long id) {
         return  jdbc.queryForObject(
                 "select * from couriers where id=?",
-                new Object[]{id},
-                new CourierMapper());
+                new CourierMapper(),
+                id
+                );
     }
 
     @Override

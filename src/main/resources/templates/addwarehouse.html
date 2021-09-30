@@ -13,7 +13,7 @@
                 <a class="nav-link" th:href="${mainurl} +'/couriers/all'">Couriers<span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="${mainurl} +'/warehouse/all'">WareHouse</a>
+                <a class="nav-link" href="#">WareHouse</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="${mainurl} +'/client'">Home</a>
@@ -25,36 +25,23 @@
 <div class="container">
     <main>
         <div class="py-5 text-center">
-            <h2>Add new Product !</h2>
-            <p class="lead">Enter the product's descriptions.</p>
-        </div>
-        <h1>The following types of products are available for adding:</h1>
-        <div class="container">
-            <ol class="breadcrumb-item">
-                <li class="breadcrumb">Food/drinks</a></li>
-                <li class="breadcrumb">Home/Garden  </a></li>
-                <li class="breadcrumb">Electronics  </li>
-                <li class="breadcrumb">Clothes</li>
-            </ol>
+            <h2>Add new WareHouse !</h2>
+            <p class="lead">Enter the warehouse's descriptions.</p>
         </div>
 
         <div class="row g-5">
             <div class="col-md-7 col-lg-8">
-                <h4 class="mb-3">Personal data</h4>
-                <form  th:action="@{/api/products/addproduct}" th:object="${productDto}" th:method="POST">
+                <h4 class="mb-3">WareHouse description:</h4>
+                <form  th:action="@{/api/warehouse/addwarehouse}" th:object="${wareHouseDto}" th:method="POST">
                     <div class="row g-3">
                         <div class="col-sm-6">
-                            <label for="productType" class="form-label">Product type</label>
-                            <input type="text" class="form-control" id="productType" th:field="*{product_type}">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" th:field="*{name}">
                         </div>
 
                         <div class="col-sm-6">
-                            <label for="description" class="form-label">Description</label>
-                            <input type="text" class="form-control" id="description" th:field="*{description}">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="weight" class="form-label">Weight</label>
-                            <input type="text" class="form-control" id="weight" th:field="*{weight}">
+                            <label for="address" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="address" th:field="*{address}">
                         </div>
 
                     </div>

@@ -29,8 +29,9 @@ public class ContactRepo implements CrudOperations<Contact>{
     public Contact getById(Long id) {
         return jdbc.queryForObject(
                 "select * from contact where id=?",
-                new Object[]{id},
-                new ContactMapper());
+                new ContactMapper(),
+                id
+                );
     }
 
     @Override
@@ -56,8 +57,10 @@ public class ContactRepo implements CrudOperations<Contact>{
     public Long insertWithReturningId(Contact contact){
         return jdbc.queryForObject(
                 "insert into contact(adress,telephone_number) values(?,?) returning id",
-                new Object[]{contact.getAddress(),contact.getTelephoneNumber()},
-                new ReturningIdMapper());
+                new ReturningIdMapper(),
+                contact.getAddress(),
+                contact.getTelephoneNumber()
+                );
     }
 
 

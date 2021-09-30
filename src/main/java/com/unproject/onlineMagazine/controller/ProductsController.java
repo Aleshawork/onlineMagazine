@@ -2,7 +2,7 @@ package com.unproject.onlineMagazine.controller;
 
 import com.unproject.onlineMagazine.model.dao.Product;
 import com.unproject.onlineMagazine.model.dto.ProductDto;
-import com.unproject.onlineMagazine.repository.ProductRepo;
+import com.unproject.onlineMagazine.service.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -20,16 +20,17 @@ public class ProductsController {
 
     @Value("${web.main.url}")
     private String url;
-    private final ProductRepo productRepo;
+    private final ProductsService productsService;
 
     @Autowired
-    public ProductsController(ProductRepo productRepo) {
-        this.productRepo = productRepo;
+    public ProductsController(ProductsService productsService) {
+        this.productsService = productsService;
     }
+
 
     @GetMapping("/all")
     public String findAllProducts(Model model){
-        List<Product> products = productRepo.getAll();
+        List<Product> products = productsService.getAll();
         model.addAttribute("products",products);
         model.addAttribute("mainurl",url);
         return "products";
@@ -48,12 +49,8 @@ public class ProductsController {
             Model model,
             @ModelAttribute("productDto")ProductDto productDto
             ) {
-        productRepo.insert(new Product(
-                productDto.getProduct_type(),
-                productDto.getDescription(),
-                productDto.getWeight()
-        ));
-        model.addAttribute("products",productRepo.getAll());
+        productsService.save(productDto);
+        model.addAttribute("products",productsService.getAll());
         model.addAttribute("mainurl",url);
         return "products";
 
