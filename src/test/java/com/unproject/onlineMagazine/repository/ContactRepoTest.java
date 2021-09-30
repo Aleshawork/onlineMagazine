@@ -23,7 +23,7 @@ class ContactRepoTest {
 
     @Test
     void getById() {
-        assertThat(contactRepo.getById(1L).getAdress()).isEqualTo("Moscov, Popovo 21 2");
+        assertThat(contactRepo.getById(1L).getAddress()).isEqualTo("Moscov, Popovo 21 2");
         assertThat(contactRepo.getById(2L).getTelephoneNumber()).isEqualTo("89652075689");
         //assertThat(contactRepo.getById(7L)).isEqualTo(new Contact());//EmptyResultDataAccessException
     }

@@ -28,7 +28,7 @@ public class OrdersRepo implements CrudOperations<Orders>{
     }
 
     @Override
-    public void insert(Orders orders) {
+    public void  insert(Orders orders) {
         jdbc.update(
                 "insert into orders(client_id,status,product_id,count,transaction_id) values(?,?,?,?,?)",
                 orders.getClientId(),

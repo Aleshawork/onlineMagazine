@@ -2,9 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Managing</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <meta name="theme-color" content="#7952b3">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body style="background-image: url('https://catherineasquithgallery.com/uploads/posts/2021-02/1612473246_188-p-fon-dlya-prezentatsii-powerpoint-serii-fon-209.jpg')">
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -27,26 +26,31 @@
 </nav>
 <hr>
 <div>
-    <h1 class="display-2" th:align="center" >Clients</h1>
+    <h1 class="display-2" th:align="left" >Products</h1>
+</div>
+<div class="container" >
+    <div class="col-md-4">
+        <h2>Add Products</h2>
+        <p>You can add a new products. To do this, click on the link and enter the product description. </p>
+        <p><a class="btn btn-primary btn-lg" href="http://localhost:8081/api/products/addproduct" role="button">Add</a></p>
+    </div>
 </div>
 <div class="container">
     <table id="clientTable" class="table table-light" th:align="center" >
         <thead class=" thead-dark">
         <tr>
-            <th>Name</th>
-            <th>Login</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>Telephone</th>
+            <th>Id</th>
+            <th>Product Type</th>
+            <th>Description</th>
+            <th>Weight</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="client : ${listClient} " >
-            <td th:text="${client.getClientPersonalDto().getName()}" th:scope="row"></td>
-            <td th:text="${client.getClientPersonalDto().getLogin()}"></td>
-            <td th:text="${client.getClientPersonalDto().getEmail()}"></td>
-            <td th:text="${client.getContactDto().getAddress()}"></td>
-            <td th:text="${client.getContactDto().getTelephone_number()}">
+        <tr th:each="product : ${products} " >
+            <td th:text="${product.getId()}" th:scope="row" ></td>
+            <td th:text="${product.getProduct_type()}"></td>
+            <td th:text="${product.getDescription()}"></td>
+            <td th:text="${product.getWeight()}"></td>
             </td>
         </tr>
         </tbody>

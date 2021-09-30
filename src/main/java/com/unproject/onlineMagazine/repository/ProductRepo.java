@@ -1,13 +1,20 @@
 package com.unproject.onlineMagazine.repository;
 
 import com.unproject.onlineMagazine.model.dao.Product;
+import com.unproject.onlineMagazine.repository.mapper.OrdersMapper;
+import com.unproject.onlineMagazine.repository.mapper.ProductMapper;
+import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 public class ProductRepo implements CrudOperations<Product> {
-    //todo: реализация
+    private final JdbcOperations jdbc;
+
+    public ProductRepo(JdbcOperations jdbc) {
+        this.jdbc = jdbc;
+    }
 
     @Override
     public Product getById(Long id) {
@@ -16,6 +23,12 @@ public class ProductRepo implements CrudOperations<Product> {
 
     @Override
     public void insert(Product product) {
+         jdbc.update(
+                "insert into product(product_type,description,weight) values(?,?,?)",
+                product.getProduct_type(),
+                product.getDescription(),
+                product.getWeight()
+        );
 
     }
 
@@ -29,8 +42,15 @@ public class ProductRepo implements CrudOperations<Product> {
 
     }
 
+    public List<Product> getByType(String type){
+        return null;
+    }
+
     @Override
     public List<Product> getAll() {
-        return null;
+         return jdbc.query(
+                "select * from product",
+                new ProductMapper()
+        );
     }
 }

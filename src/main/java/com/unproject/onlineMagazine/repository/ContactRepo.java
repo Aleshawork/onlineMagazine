@@ -1,12 +1,15 @@
 package com.unproject.onlineMagazine.repository;
+import com.unproject.onlineMagazine.model.dao.Client;
 import com.unproject.onlineMagazine.model.dao.Contact;
 import com.unproject.onlineMagazine.repository.mapper.ContactMapper;
+import com.unproject.onlineMagazine.repository.mapper.ReturningIdMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Repository
@@ -32,9 +35,9 @@ public class ContactRepo implements CrudOperations<Contact>{
 
     @Override
     public void insert(Contact contact) {
-        jdbc.update(
+       jdbc.update(
                 "insert into contact(adress,telephone_number) values(?,?)",
-                    contact.getAdress(),
+                    contact.getAddress(),
                     contact.getTelephoneNumber()
         );
     }
@@ -49,4 +52,13 @@ public class ContactRepo implements CrudOperations<Contact>{
     public List<Contact> getAll() {
         return jdbc.query("select * from contact",new ContactMapper());
     }
+
+    public Long insertWithReturningId(Contact contact){
+        return jdbc.queryForObject(
+                "insert into contact(adress,telephone_number) values(?,?) returning id",
+                new Object[]{contact.getAddress(),contact.getTelephoneNumber()},
+                new ReturningIdMapper());
+    }
+
+
 }

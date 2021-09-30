@@ -5,16 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Contact {
+@NoArgsConstructor
+public class Courier {
     private Long id;
-    private String address;
+    private String name;
+    private int rating;
     private String telephoneNumber;
-
-    public Contact(String adress, String telephoneNumber) {
-        this.address = adress;
-        this.telephoneNumber = telephoneNumber;
-    }
 }
-

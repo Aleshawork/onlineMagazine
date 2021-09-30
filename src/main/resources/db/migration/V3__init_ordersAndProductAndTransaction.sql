@@ -7,3 +7,6 @@ insert into transactions(date_open)
 -- status: ready  given  assembling
 insert into orders(client_id, status, product_id, count, transaction_id)
 values (1,'ready',1,3,1),(2,'given',2,1,2),(1,'ready',3,1,1);
+
+insert into couriers(id,name ,rating,telephone_number)
+values(1,'Arut',5,'89452035631'),(2,'Morat',2,'89452135699'),(3,'Armen',1,'8945213533');

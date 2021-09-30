@@ -2,6 +2,7 @@ package com.unproject.onlineMagazine.repository;
 
 import com.unproject.onlineMagazine.model.dao.Client;
 import com.unproject.onlineMagazine.repository.mapper.ClientMapper;
+import com.unproject.onlineMagazine.repository.mapper.ReturningIdMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.stereotype.Repository;
@@ -41,13 +42,16 @@ public class ClientRepo implements CrudOperations<Client>{
     @Override
     public void insert(Client client) {
 
-        jdbc.update("insert into client(login,password,name,email,contact_id) values(:login,:password,:name,:email,:contact_id)",
+         jdbc.update("insert into client(login,password,name,email,contact_id,status) values(:login,:password,:name,:email,:contact_id,:status)",
                 Map.of(
                         "login",client.getLogin(),
                         "password",client.getPassword(),
                         "name", client.getName(),
                         "email",client.getEmail(),
-                        "contact_id",client.getContact_id()));
+                        "contact_id",client.getContact_id(),
+                        "status",client.getStatus()
+                )
+         );
     }
 
     @Override
@@ -75,6 +79,19 @@ public class ClientRepo implements CrudOperations<Client>{
                 "select * from client where login=:login",
                 Map.of("login",login),
                 new ClientMapper());
+    }
+
+    public Long insertWithReturningId(Client client){
+        return jdbc.queryForObject(
+                "insert into client(login,password,name,email,contact_id,status) values(:login,:password,:name,:email,:contact_id,:status) returning id",
+                Map.of("login",client.getLogin(),
+                        "password", client.getPassword(),
+                        "name",client.getName(),
+                        "email",client.getEmail(),
+                        "contact_id",client.getContact_id(),
+                        "status",client.getStatus()
+                        ),
+                new ReturningIdMapper());
     }
 
 }

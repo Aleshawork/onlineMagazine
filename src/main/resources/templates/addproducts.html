@@ -1,0 +1,67 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body class="bg-light" >
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="http://localhost:8081/api/client/all" >Clients</a>
+
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault" >
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="http://localhost:8081/api/couriers/all">Couriers<span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">WareHouse</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8081/api/client">Home</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<hr>
+<div class="container">
+    <main>
+        <div class="py-5 text-center">
+            <h2>Add new Product</h2>
+            <p class="lead">Enter the product's descriptions.</p>
+        </div>
+
+        <div class="row g-5">
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3">Personal data</h4>
+                <form  th:action="@{/api/products/addproduct}" th:object="${productDto}" th:method="POST">
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="productType" class="form-label">Product type</label>
+                            <input type="text" class="form-control" id="productType" th:field="*{product_type}">
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="description" class="form-label">Description</label>
+                            <input type="text" class="form-control" id="description" th:field="*{description}">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="weight" class="form-label">Weight</label>
+                            <input type="text" class="form-control" id="weight" th:field="*{weight}">
+                        </div>
+
+                    </div>
+
+                    <hr class="my-4">
+
+                    <button class="w-100 btn btn-primary btn-lg" type="submit">Save</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+
+</div>
+
+</body>
+</html>

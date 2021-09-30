@@ -1,0 +1,84 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body class="bg-light" >
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="http://localhost:8081/api/client/all" >Clients</a>
+
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault" >
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="http://localhost:8081/api/couriers/all">Couriers<span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">WareHouse</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8081/api/client">Home</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<hr>
+<div class="container">
+    <main>
+        <div class="py-5 text-center">
+            <h2>Add new Client</h2>
+            <p class="lead">Enter the client's personal data.</p>
+        </div>
+
+        <div class="row g-5">
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3">Personal data</h4>
+                <form  th:action="@{/api/client/addclient}" th:object="${clientDto}" th:method="POST">
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="login" class="form-label">Login</label>
+                            <input type="text" class="form-control" id="login" th:field="*{login}">
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="text" class="form-control" id="password" th:field="*{password}">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" th:field="*{name}">
+                        </div>
+
+                        <div class="col-12">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="you@mail.ru" th:field="*{email}">
+
+                        </div>
+
+
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label for="address" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="address" placeholder="1234 Main St" th:field="*{address}" >
+                        </div>
+                        <div class="col-12">
+                            <label for="telephone" class="form-label">Telephone</label>
+                            <input type="text" class="form-control" id="telephone" th:field="*{telephone_number}">
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <button class="w-100 btn btn-primary btn-lg" type="submit">Save</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+
+</div>
+
+</body>
+</html>

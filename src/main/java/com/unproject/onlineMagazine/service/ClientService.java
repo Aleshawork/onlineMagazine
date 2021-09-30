@@ -2,6 +2,7 @@ package com.unproject.onlineMagazine.service;
 
 import com.unproject.onlineMagazine.model.dao.Client;
 import com.unproject.onlineMagazine.model.dao.Contact;
+import com.unproject.onlineMagazine.model.dto.ClientCreationDto;
 import com.unproject.onlineMagazine.model.dto.ClientInfoDto;
 import com.unproject.onlineMagazine.model.dto.ClientPersonalDto;
 import com.unproject.onlineMagazine.model.dto.ContactDto;
@@ -46,7 +47,7 @@ public class ClientService {
             );
             clientInfoDto.setContactDto(
                     new ContactDto(
-                         contact.getAdress(),
+                         contact.getAddress(),
                          contact.getTelephoneNumber()
                     )
             );
@@ -74,13 +75,32 @@ public class ClientService {
                                     client.getEmail()
                             ),
                             new ContactDto(
-                                    contact.getAdress(),
+                                    contact.getAddress(),
                                     contact.getTelephoneNumber()
                             )
                     )
             );
         }
         return clientInfoDtoList;
+    }
+
+    @Transactional
+    public void addClient(ClientCreationDto clientDto){
+        Contact contact = new Contact(
+                clientDto.getAddress(),
+                clientDto.getTelephone_number()
+        );
+        Long index = contactRepo.insertWithReturningId(contact);
+
+        Client client = new Client(
+                clientDto.getLogin(),
+                clientDto.getPassword(),
+                clientDto.getName(),
+                clientDto.getEmail(),
+                index,
+                "on"
+        );
+        clientRepo.insert(client);
     }
 
 

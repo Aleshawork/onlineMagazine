@@ -44,7 +44,7 @@ class ClientServiceTest {
 
         ClientInfoDto testedObject = clientService.getPersonInformationByLogin("Alesha").get();
         assertEquals(testedObject.getClientPersonalDto().getEmail(),"alesha@mail.ru");
-        assertEquals(testedObject.getContactDto().getAdress(),"Moscov, Popovo 21 2");
+        assertEquals(testedObject.getContactDto().getAddress(),"Moscov, Popovo 21 2");
 
         Assertions.assertThrows(DataAccessException.class,
                 ()->{
