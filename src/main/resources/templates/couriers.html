@@ -9,19 +9,17 @@
 </head>
 <body style="background-image: url('https://catherineasquithgallery.com/uploads/posts/2021-02/1612473246_188-p-fon-dlya-prezentatsii-powerpoint-serii-fon-209.jpg')">
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="http://localhost:8081/api/client/all" th:align="right">Clients</a>
-
-
+    <a class="navbar-brand"  th:href="${mainurl}+ '/client/all'"  th:align="right">Clients</a>
     <div class="collapse navbar-collapse" id="navbarsExampleDefault" >
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="http://localhost:8081/api/couriers/all">Couriers<span class="sr-only"></span></a>
+                <a class="nav-link" th:href="${mainurl} +'/couriers/all'">Couriers<span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">WareHouse</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8081/api/client">Home</a>
+                <a class="nav-link" th:href="${mainurl} +'/client'">Home</a>
             </li>
         </ul>
     </div>

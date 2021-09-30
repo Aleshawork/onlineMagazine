@@ -14,15 +14,14 @@
 </head>
 
 <body style="background-image: url('https://catherineasquithgallery.com/uploads/posts/2021-02/1612473246_188-p-fon-dlya-prezentatsii-powerpoint-serii-fon-209.jpg')">
-
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="http://localhost:8081/api/client/all" th:align="right">Clients</a>
+    <a class="navbar-brand"  th:href="${mainurl}+ '/client/all'"  th:align="right">Clients</a>
 
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault" >
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="http://localhost:8081/api/couriers/all">Couriers<span class="sr-only"></span></a>
+                <a class="nav-link" th:href="${mainurl} +'/couriers/all'">Couriers<span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">WareHouse</a>
@@ -38,7 +37,7 @@
         <div class="container">
             <h1 class="display-3" th:align="center" >Welcome to the management console of your store !</h1>
             <p>Welcome to the Online Magazine service. Here you can find and order more than 1000 products. And we will deliver all these goods to you.</p>
-            <p><a class="btn btn-primary btn-lg" href="http://localhost:8081/api/products/all" role="button">Products </a></p>
+            <p><a class="btn btn-primary btn-lg" th:href="${mainurl} +'/products/all'" role="button">Products </a></p>
         </div>
     </div>
 
@@ -47,7 +46,7 @@
             <div class="col-md-4">
                 <h2>Add Client</h2>
                 <p>You can add a new client. To do this, click on the link and enter the credentials. </p>
-                <p><a class="btn btn-primary btn-lg" href="http://localhost:8081/api/client/addclient" role="button">Add</a></p>
+                <p><a class="btn btn-primary btn-lg" th:href="${mainurl} +'/client/addclient'" role="button">Add</a></p>
             </div>
             <div class="col-md-4">
                 <h2>Add Courier</h2>

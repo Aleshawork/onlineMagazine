@@ -4,6 +4,7 @@ import com.unproject.onlineMagazine.model.dao.Product;
 import com.unproject.onlineMagazine.model.dto.ProductDto;
 import com.unproject.onlineMagazine.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,8 @@ import java.util.List;
 @RequestMapping("api/products")
 public class ProductsController {
 
+    @Value("${web.main.url}")
+    private String url;
     private final ProductRepo productRepo;
 
     @Autowired
@@ -28,6 +31,7 @@ public class ProductsController {
     public String findAllProducts(Model model){
         List<Product> products = productRepo.getAll();
         model.addAttribute("products",products);
+        model.addAttribute("mainurl",url);
         return "products";
     }
 
@@ -35,6 +39,7 @@ public class ProductsController {
     public String addProduct(Model model){
         Product product = new Product();
         model.addAttribute("productDto",product);
+        model.addAttribute("mainurl",url);
         return "addproducts";
     }
 
@@ -49,6 +54,7 @@ public class ProductsController {
                 productDto.getWeight()
         ));
         model.addAttribute("products",productRepo.getAll());
+        model.addAttribute("mainurl",url);
         return "products";
 
     }
