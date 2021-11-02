@@ -33,7 +33,7 @@ public class ClientRepo implements CrudOperations<Client>{
     @Override
     public List<Client> getAll() {
         return jdbc.query(
-                "select * from client",
+                "select * from client where status='on'",
                 new ClientMapper()
         );
     }

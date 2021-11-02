@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Product {
     private Long id;
-    private String product_type;
+    private String productType;
     private String description;
     private double weight;
 
     public Product(String product_type, String description, double weight) {
-        this.product_type = product_type;
+        this.productType = product_type;
         this.description = description;
         this.weight = weight;
     }

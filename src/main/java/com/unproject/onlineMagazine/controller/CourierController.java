@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -27,6 +28,17 @@ public class CourierController {
     public String getAll(Model model){
         List<Courier> couriers = courierService.findAll();
         model.addAttribute("couriers",couriers);
+        model.addAttribute("mainurl",url);
+        return "couriers";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(
+            @PathVariable("id") int id,
+            Model model
+            ){
+        courierService.delete(id);
+        model.addAttribute("couriers",courierService.findAll());
         model.addAttribute("mainurl",url);
         return "couriers";
     }

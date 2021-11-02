@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Managing</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <meta name="theme-color" content="#7952b3">
 </head>
 <body style="background-image: url('https://catherineasquithgallery.com/uploads/posts/2021-02/1612473246_188-p-fon-dlya-prezentatsii-powerpoint-serii-fon-209.jpg')">
@@ -25,31 +25,22 @@
 </nav>
 <hr>
 <div>
-    <h1 class="display-2" th:align="center" >Couriers</h1>
+    <h1 class="display-2" th:align="center" >Product</h1>
 </div>
 <div class="container">
     <table id="clientTable" class="table table-light" th:align="center" >
         <thead class=" thead-dark">
         <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Rating</th>
-            <th>Telephone</th>
+            <th>Product Type</th>
+            <th>Description</th>
+            <th>Weight</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="courier : ${couriers} " >
-            <td th:text="${courier.getId()}" th:scope="row"></td>
-            <td th:text="${courier.getName()}"></td>
-            <td th:text="${courier.getRating()}"></td>
-            <td th:text="${courier.getTelephoneNumber()}"></td>
-<            <td>
-                <form th:action="@{/api/couriers/delete/__${courier.getId()}__}"  th:method="GET">
-                    <button type="submit" class="btn btn-primary" >
-                        Delete
-                    </button>
-                </form>
-            </td>
+        <tr th:each="product : ${products} " >
+            <td th:text="${product.getProductType()}"></td>
+            <td th:text="${product.getDescription()}"></td>
+            <td th:text="${product.getWeight()}"></td>
         </tr>
         </tbody>
     </table>

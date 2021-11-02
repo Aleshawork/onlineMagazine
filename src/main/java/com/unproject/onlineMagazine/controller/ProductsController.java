@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -47,13 +44,28 @@ public class ProductsController {
     @PostMapping("/addproduct")
     public String saveProduct(
             Model model,
-            @ModelAttribute("productDto")ProductDto productDto
+            @ModelAttribute("productDto")Product product
             ) {
+        ProductDto productDto = new ProductDto(
+                product.getProductType(),
+                product.getDescription(),
+                product.getWeight()
+        );
         productsService.save(productDto);
         model.addAttribute("products",productsService.getAll());
         model.addAttribute("mainurl",url);
         return "products";
 
+    }
+
+    @GetMapping("/{id}")
+    public String product(
+            @PathVariable int id,
+            Model model
+    ){
+        model.addAttribute("products",productsService.getById(id));
+        model.addAttribute("mainurl",url);
+        return "product";
     }
 
 

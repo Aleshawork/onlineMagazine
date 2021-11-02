@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("api/client")
@@ -53,6 +50,17 @@ public class ClientController {
             @ModelAttribute("clientDto") ClientCreationDto clientDto){
 
         clientService.addClient(clientDto);
+        model.addAttribute("listClient",clientService.getAllPersonInformation());
+        model.addAttribute("mainurl",url);
+        return "clients";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteClient(
+            @PathVariable("id")int id,
+            Model model
+    ){
+        clientService.delete(id);
         model.addAttribute("listClient",clientService.getAllPersonInformation());
         model.addAttribute("mainurl",url);
         return "clients";

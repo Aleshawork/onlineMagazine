@@ -46,7 +46,7 @@
         <tbody>
         <tr th:each="product : ${products} " >
             <td th:text="${product.getId()}" th:scope="row" ></td>
-            <td th:text="${product.getProduct_type()}"></td>
+            <td th:text="${product.getProductType()}"></td>
             <td th:text="${product.getDescription()}"></td>
             <td th:text="${product.getWeight()}"></td>
             </td>

@@ -52,4 +52,13 @@ public class CourierRepo implements CrudOperations<Courier> {
                 new CourierMapper()
         );
     }
+    // todo:: add delete methode with cascade deleting
+
+    public void delete(int id){
+        jdbc.update(
+                "delete from couriers where id=?",
+                id
+
+        );
+    }
 }

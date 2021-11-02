@@ -25,33 +25,39 @@
 </nav>
 <hr>
 <div>
-    <h1 class="display-2" th:align="center" >Couriers</h1>
+    <h1 class="display-2" th:align="center" >Orders</h1>
 </div>
 <div class="container">
     <table id="clientTable" class="table table-light" th:align="center" >
         <thead class=" thead-dark">
         <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Rating</th>
-            <th>Telephone</th>
+            <th>Client Id</th>
+            <th>Status</th>
+            <th>Product ID</th>
+            <th>Product Information</th>
+            <th>Count</th>
         </tr>
         </thead>
-        <tbody>
-        <tr th:each="courier : ${couriers} " >
-            <td th:text="${courier.getId()}" th:scope="row"></td>
-            <td th:text="${courier.getName()}"></td>
-            <td th:text="${courier.getRating()}"></td>
-            <td th:text="${courier.getTelephoneNumber()}"></td>
-<            <td>
-                <form th:action="@{/api/couriers/delete/__${courier.getId()}__}"  th:method="GET">
-                    <button type="submit" class="btn btn-primary" >
-                        Delete
-                    </button>
-                </form>
-            </td>
-        </tr>
-        </tbody>
+
+        <th:block th:each= "bean: ${collection.entrySet()}">
+            <tbody>
+                <tr th:each="order: ${bean.getValue()}">
+                    <td th:text="${order.getClientId()}" th:scope="row"></td>
+                    <td th:text="${order.getStatus()}"></td>
+                    <td th:text="${order.getProduct_id()}"></td>
+                    <td>
+                        <form th:action="@{/api/products/__${order.getProduct_id()}__}"  th:method="GET">
+                            <button type="submit" class="btn btn-primary" >
+                                Info
+                            </button>
+                        </form>
+                    </td>
+                    <td th:text="${order.getCount()}"></td>
+                </tr>
+            </tbody>
+        </th:block>
+
+
     </table>
 </div>
 </body>

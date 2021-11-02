@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
 @Slf4j
 @Service
 public class ClientService {
@@ -39,17 +40,18 @@ public class ClientService {
             Client client = clientRepo.findByLogin(login);
             Contact contact = contactRepo.getById(client.getContact_id());
             clientInfoDto.setClientPersonalDto(
-                    new ClientPersonalDto(
-                            client.getName(),
-                            client.getLogin(),
-                            client.getEmail()
-                    )
+                     ClientPersonalDto.builder()
+                             .id(client.getId())
+                             .name(client.getName())
+                             .login(client.getLogin())
+                             .email(client.getEmail())
+                             .build()
             );
             clientInfoDto.setContactDto(
-                    new ContactDto(
-                         contact.getAddress(),
-                         contact.getTelephoneNumber()
-                    )
+                    ContactDto.builder()
+                            .address(contact.getAddress())
+                            .telephone_number(contact.getTelephoneNumber())
+                            .build()
             );
 
         }catch(DataAccessException ex){
@@ -67,19 +69,20 @@ public class ClientService {
         List<Client> allClientInfo = clientRepo.getAll();
         for(Client client:allClientInfo){
             Contact contact = contactRepo.getById(client.getContact_id());
-            clientInfoDtoList.add(
-                    new ClientInfoDto(
-                            new ClientPersonalDto(
-                                    client.getName(),
-                                    client.getLogin(),
-                                    client.getEmail()
-                            ),
-                            new ContactDto(
-                                    contact.getAddress(),
-                                    contact.getTelephoneNumber()
-                            )
-                    )
-            );
+                clientInfoDtoList.add(
+                        new ClientInfoDto(
+                                ClientPersonalDto.builder()
+                                        .id(client.getId())
+                                        .name(client.getName())
+                                        .login(client.getLogin())
+                                        .email(client.getEmail())
+                                        .build(),
+                                ContactDto.builder()
+                                        .address(contact.getAddress())
+                                        .telephone_number(contact.getTelephoneNumber())
+                                        .build()
+                        )
+                );
         }
         return clientInfoDtoList;
     }
@@ -91,6 +94,7 @@ public class ClientService {
                 clientDto.getTelephone_number()
         );
         Long index = contactRepo.insertWithReturningId(contact);
+        log.info("Add contact with adress:{}",clientDto.getAddress());
 
         Client client = new Client(
                 clientDto.getLogin(),
@@ -101,6 +105,13 @@ public class ClientService {
                 "on"
         );
         clientRepo.insert(client);
+        log.info("Add client with Login: {}",client.getLogin());
+    }
+
+
+    public void delete(int id){
+        clientRepo.deleteById(Integer.toUnsignedLong(id));
+        log.info("Disabling an account of id: {}",id);
     }
 
 

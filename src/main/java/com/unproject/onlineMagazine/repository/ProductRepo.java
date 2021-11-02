@@ -1,8 +1,6 @@
 package com.unproject.onlineMagazine.repository;
 
 import com.unproject.onlineMagazine.model.dao.Product;
-import com.unproject.onlineMagazine.repository.mapper.CourierMapper;
-import com.unproject.onlineMagazine.repository.mapper.OrdersMapper;
 import com.unproject.onlineMagazine.repository.mapper.ProductMapper;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.stereotype.Repository;
@@ -29,7 +27,7 @@ public class ProductRepo implements CrudOperations<Product> {
     public void insert(Product product) {
          jdbc.update(
                 "insert into product(product_type,description,weight) values(?,?,?)",
-                product.getProduct_type(),
+                product.getProductType(),
                 product.getDescription(),
                 product.getWeight()
         );
