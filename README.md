@@ -1,5 +1,5 @@
 # onlineMagazine
-Примитивный сервис для онлайн заказа товаров (Курсовая)
+Примитивный сервис для управления и мониторинга онлайн заказов товаров (Курсовая)
 ## Схема базы данных
 ![Image alt](https://github.com/Aleshawork/onlineMagazine/raw/master/bd_screen.png)
 ## Технологии 
