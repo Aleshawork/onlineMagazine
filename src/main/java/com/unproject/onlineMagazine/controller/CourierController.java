@@ -1,14 +1,13 @@
 package com.unproject.onlineMagazine.controller;
 
 import com.unproject.onlineMagazine.model.dao.Courier;
+import com.unproject.onlineMagazine.model.dto.CourierDto;
 import com.unproject.onlineMagazine.service.CourierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -40,6 +39,25 @@ public class CourierController {
         courierService.delete(id);
         model.addAttribute("couriers",courierService.findAll());
         model.addAttribute("mainurl",url);
+        return "couriers";
+    }
+
+    @GetMapping()
+    public String addCourier(Model model){
+        CourierDto courierDto = new CourierDto();
+        model.addAttribute("courier",courierDto);
+        model.addAttribute("mainurl",url);
+        return "addcourier";
+    }
+
+    @PostMapping()
+    public String addCourier(
+            Model model,
+            @ModelAttribute("courier") CourierDto courierDto
+    ){
+        courierService.save(courierDto);
+        model.addAttribute("mainurl",url);
+        model.addAttribute("couriers",courierService.findAll());
         return "couriers";
     }
 }

@@ -29,7 +29,9 @@
 </div>
 <div class="container">
     <table id="clientTable" class="table table-light" th:align="center" >
-        <thead class=" thead-dark">
+
+        <th:block th:each= "bean: ${collection.entrySet()}">
+            <thead class=" thead-dark">
         <tr>
             <th>Client Id</th>
             <th>Status</th>
@@ -39,7 +41,7 @@
         </tr>
         </thead>
 
-        <th:block th:each= "bean: ${collection.entrySet()}">
+
             <tbody>
                 <tr th:each="order: ${bean.getValue()}">
                     <td th:text="${order.getClientId()}" th:scope="row"></td>
@@ -53,8 +55,17 @@
                         </form>
                     </td>
                     <td th:text="${order.getCount()}"></td>
+                    <td>
+                        <form th:action="@{/api/client/__${order.getClientId()}__}"  th:method="GET">
+                            <button type="submit" class="btn btn-primary" >
+                                Client
+                            </button>
+                        </form>
+                    </td>
                 </tr>
+
             </tbody>
+
         </th:block>
 
 

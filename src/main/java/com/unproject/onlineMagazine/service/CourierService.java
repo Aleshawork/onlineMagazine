@@ -1,6 +1,7 @@
 package com.unproject.onlineMagazine.service;
 
 import com.unproject.onlineMagazine.model.dao.Courier;
+import com.unproject.onlineMagazine.model.dto.CourierDto;
 import com.unproject.onlineMagazine.repository.CourierRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,4 +30,17 @@ public class CourierService {
         courierRepo.delete(id);
         log.info("Delete courier with id:{}",id);
     }
+
+    @Transactional
+    public void save(CourierDto courierDto){
+        courierRepo.insert(
+                Courier.builder()
+                        .name(courierDto.getName())
+                        .rating(courierDto.getRating())
+                        .telephoneNumber(courierDto.getTelephoneNumber())
+                        .build()
+        );
+    }
+
+
 }

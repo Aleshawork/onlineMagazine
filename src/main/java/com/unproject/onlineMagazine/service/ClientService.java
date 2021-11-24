@@ -115,5 +115,8 @@ public class ClientService {
     }
 
 
+    public Client findById(int id) {
+        return clientRepo.getById(Integer.toUnsignedLong(id));
 
+    }
 }

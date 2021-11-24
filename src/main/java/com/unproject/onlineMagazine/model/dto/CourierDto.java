@@ -1,16 +1,13 @@
-package com.unproject.onlineMagazine.model.dao;
+package com.unproject.onlineMagazine.model.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Courier {
-    private Long id;
+public class CourierDto {
     private String name;
     private int rating;
     private String telephoneNumber;

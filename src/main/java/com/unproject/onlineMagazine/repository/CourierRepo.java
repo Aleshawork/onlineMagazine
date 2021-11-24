@@ -1,6 +1,9 @@
 package com.unproject.onlineMagazine.repository;
 
 import com.unproject.onlineMagazine.model.dao.Courier;
+import com.unproject.onlineMagazine.model.dao.WareHouse;
+import com.unproject.onlineMagazine.model.dto.CourierDto;
+import com.unproject.onlineMagazine.model.dto.WareHouseDto;
 import com.unproject.onlineMagazine.repository.mapper.ClientMapper;
 import com.unproject.onlineMagazine.repository.mapper.ContactMapper;
 import com.unproject.onlineMagazine.repository.mapper.CourierMapper;
@@ -61,4 +64,5 @@ public class CourierRepo implements CrudOperations<Courier> {
 
         );
     }
+
 }

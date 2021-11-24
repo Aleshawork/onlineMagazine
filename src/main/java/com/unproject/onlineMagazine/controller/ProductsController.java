@@ -33,7 +33,7 @@ public class ProductsController {
         return "products";
     }
 
-    @GetMapping("/addproduct")
+    @GetMapping("/product")
     public String addProduct(Model model){
         Product product = new Product();
         model.addAttribute("productDto",product);
@@ -41,7 +41,7 @@ public class ProductsController {
         return "addproducts";
     }
 
-    @PostMapping("/addproduct")
+    @PostMapping("/product")
     public String saveProduct(
             Model model,
             @ModelAttribute("productDto")Product product

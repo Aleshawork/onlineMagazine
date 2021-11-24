@@ -1,5 +1,6 @@
 package com.unproject.onlineMagazine.controller;
 
+import com.unproject.onlineMagazine.model.dao.Client;
 import com.unproject.onlineMagazine.model.dto.ClientCreationDto;
 import com.unproject.onlineMagazine.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +65,16 @@ public class ClientController {
         model.addAttribute("listClient",clientService.getAllPersonInformation());
         model.addAttribute("mainurl",url);
         return "clients";
+    }
+
+    @GetMapping("/{id}")
+    public String findClientById(
+            @PathVariable("id") int id,
+            Model model
+    ){
+        model.addAttribute("client",clientService.findById(id));
+        model.addAttribute("mainurl",url);
+        return "client";
     }
 
 }
