@@ -28,12 +28,14 @@
     <h1 class="display-2" th:align="center" >Product</h1>
 </div>
 <div class="container">
+
     <table id="clientTable" class="table table-light" th:align="center" >
         <thead class=" thead-dark">
         <tr>
             <th>Product Type</th>
             <th>Description</th>
             <th>Weight</th>
+            <th>Price</th>
         </tr>
         </thead>
         <tbody>
@@ -41,6 +43,7 @@
             <td th:text="${product.getProductType()}"></td>
             <td th:text="${product.getDescription()}"></td>
             <td th:text="${product.getWeight()}"></td>
+            <td th:text="${product.getPrice()}"></td>
         </tr>
         </tbody>
     </table>

@@ -34,6 +34,25 @@
     </div>
 </div>
 <div class="container">
+    <form th:action="@{/api/products/all}"  th:method="GET">
+        <button class="btn btn-outline-primary" type="submit">All</button>
+    </form>
+    <form th:action="@{/api/products/sort/__${1}__}"  th:method="GET">
+        <button class="btn btn-outline-primary" type="submit">Sorted by Weight</button>
+    </form>
+    <form th:action="@{/api/products/sort/__${2}__}"  th:method="GET">
+        <button class="btn btn-outline-primary" type="submit">Sorted by Price</button>
+    </form>
+    <form th:action="@{/api/products/filter/__${1}__}"  th:method="GET">
+        <button class="btn btn-outline-primary" type="submit">Filter by Home/Garden</button>
+    </form>
+    <form th:action="@{/api/products/filter/__${2}__}"  th:method="GET">
+        <button class="btn btn-outline-primary" type="submit">Filter by Food/drinks</button>
+    </form>
+    <form th:action="@{/api/products/filter/__${3}__}"  th:method="GET">
+        <button class="btn btn-outline-primary" type="submit">Filter by Clothes</button>
+    </form>
+    <p></p>
     <table id="clientTable" class="table table-light" th:align="center" >
         <thead class=" thead-dark">
         <tr>
@@ -41,6 +60,7 @@
             <th>Product Type</th>
             <th>Description</th>
             <th>Weight</th>
+            <th>Price</th>
         </tr>
         </thead>
         <tbody>
@@ -49,6 +69,7 @@
             <td th:text="${product.getProductType()}"></td>
             <td th:text="${product.getDescription()}"></td>
             <td th:text="${product.getWeight()}"></td>
+            <td th:text="${product.getPrice()}"></td>
             </td>
         </tr>
         </tbody>
