@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("api/")
 public class AuthController {
 
+    @Value("${web.main.url}")
+    private String url;
+
     @Value("${auth.admin.password}")
     String password;
 
@@ -33,6 +36,7 @@ public class AuthController {
             @ModelAttribute("clientAuth") ClientAuthDto clientAuthDto){
 
         if(clientAuthDto.getLogin().equals(login) && clientAuthDto.getPassword().equals(password)){
+            model.addAttribute("mainurl",url);
             return "index";
         }
         return "start";
