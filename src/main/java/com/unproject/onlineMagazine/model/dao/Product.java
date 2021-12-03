@@ -12,6 +12,7 @@ public class Product {
     private String productType;
     private String description;
     private double weight;
+    private double price;
 
     public Product(String product_type, String description, double weight) {
         this.productType = product_type;

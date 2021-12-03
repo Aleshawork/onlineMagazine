@@ -38,11 +38,15 @@
             </ol>
         </div>
 
+
         <div class="row g-5">
             <div class="col-md-7 col-lg-8">
                 <h4 class="mb-3">Personal data</h4>
                 <form  th:action="@{/api/products/product}" th:object="${productDto}" th:method="POST">
+
+
                     <div class="row g-3">
+
                         <div class="col-sm-6">
                             <label for="productType" class="form-label">Product type</label>
                             <input type="text" class="form-control" id="productType" th:field="*{productType}">
@@ -55,6 +59,10 @@
                         <div class="col-sm-6">
                             <label for="weight" class="form-label">Weight</label>
                             <input type="text" class="form-control" id="weight" th:field="*{weight}">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="price" class="form-label">Weight</label>
+                            <input type="text" class="form-control" id="price" th:field="*{price}">
                         </div>
                     </div>
                     <hr class="my-4">
