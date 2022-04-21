@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="utf-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <title>OnlineMagazine Service</title>
     <link href="https://getbootstrap.com/docs/4.0/examples/jumbotron/jumbotron.css" rel="stylesheet">
     <style>
@@ -15,19 +16,22 @@
 
 <body style="background-image: url('https://catherineasquithgallery.com/uploads/posts/2021-02/1612473246_188-p-fon-dlya-prezentatsii-powerpoint-serii-fon-209.jpg')">
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand"  th:href="${mainurl}+ '/client/all'"  th:align="right">Clients</a>
+    <a class="navbar-brand"  th:href="${mainurl}+ '/client/all'"  th:align="right">Клиенты</a>
 
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault" >
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" th:href="${mainurl} +'/couriers/all'">Couriers<span class="sr-only"></span></a>
+                <a class="nav-link" th:href="${mainurl} +'/couriers/all'">Курьеры<span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="${mainurl} +'/warehouse/all'">WareHouse</a>
+                <a class="nav-link" th:href="${mainurl} +'/warehouse/all'">Склады</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="${mainurl} +'/orders/all'">Ordres</a>
+                <a class="nav-link" th:href="${mainurl} +'/orders/all'">Заказы</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="${mainurl} +'/auth'">Выход</a>
             </li>
         </ul>
     </div>
@@ -38,8 +42,8 @@
 
     <div class="jumbotron" >
         <div class="container">
-            <h1 class="display-3" th:align="center" >Welcome to the management console of your store !</h1>
-            <p>Welcome to the Online Magazine service. Here you can find and order more than 1000 products. And we will deliver all these goods to you.</p>
+            <h1 class="display-3" th:align="center" >Добро пожаловать на главную страницу управления заказами !</h1>
+            <p>Добро пожаловать в Online Magazine сервис. Сдесь вы можете добавать и удалить список продуктов, а также настроить базу курьеров.</p>
             <p><a class="btn btn-primary btn-lg" th:href="${mainurl} +'/products/all'" role="button">Products </a></p>
         </div>
     </div>
@@ -47,14 +51,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <h2>Add Courier</h2>
-                <p>Add a courier in one click... Follow the link above and enter the personal data of the new delivery service employee. </p>
-                <p><a class="btn btn-primary btn-lg" th:href="${mainurl} +'/couriers'" role="button">Add</a></p>
+                <h2>Добавить курьера</h2>
+                <p>Добавьте нового курьера в один клик... Перейдите по ссылке и введите персональные данные по курьеру. </p>
+                <p><a class="btn btn-primary btn-lg" th:href="${mainurl} +'/couriers'" role="button">Добавить</a></p>
             </div>
             <div class="col-md-4">
-                <h2>Add WareHouse</h2>
-                <p>Every business needs to expand. Our service supports the addition of new warehouses and storage facilities..</p>
-                <p><a class="btn btn-primary btn-lg" th:href="${mainurl} + '/warehouse/addwarehouse'" role="button">Add</a></p>
+                <h2>Добавить склад</h2>
+                <p> Наш сервис поддерживает добавления и удаления складов..</p>
+                <p><a class="btn btn-primary btn-lg" th:href="${mainurl} + '/warehouse/addwarehouse'" role="button">Добавить</a></p>
             </div>
         </div>
 

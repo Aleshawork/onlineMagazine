@@ -24,6 +24,12 @@ public class OrdresController {
         this.orderService = orderService;
     }
 
+    /**
+     * Производит вывод товаров в заказе группируя по
+     * id транзакции, данные товары будут относиться к одному
+     * заказу
+     * @return Список товаров группированных по заказу
+     */
     @GetMapping("/all")
     public String getAllOrdres(Model model){
         List<OrderDto> allOrders = orderService.getAllOrders();

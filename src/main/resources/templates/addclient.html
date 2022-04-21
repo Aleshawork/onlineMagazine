@@ -6,17 +6,17 @@
 </head>
 <body class="bg-light" >
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand"  th:href="${mainurl}+ '/client/all'"  th:align="right">Clients</a>
+    <a class="navbar-brand"  th:href="${mainurl}+ '/client/all'"  th:align="right">Клиенты</a>
     <div class="collapse navbar-collapse" id="navbarsExampleDefault" >
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" th:href="${mainurl} +'/couriers/all'">Couriers<span class="sr-only"></span></a>
+                <a class="nav-link" th:href="${mainurl} +'/couriers/all'">Курьеры<span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="${mainurl} +'/warehouse/all'">WareHouse</a>
+                <a class="nav-link" th:href="${mainurl} +'/warehouse/all'">Склады</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="${mainurl} +'/client'">Home</a>
+                <a class="nav-link" th:href="${mainurl} +'/client'">Домашняя страница</a>
             </li>
         </ul>
     </div>
@@ -25,26 +25,26 @@
 <div class="container">
     <main>
         <div class="py-5 text-center">
-            <h2>Add new Client</h2>
-            <p class="lead">Enter the client's personal data.</p>
+            <h2>Добавить нового клиента</h2>
+            <p class="lead">Добавьте данные по новому клиенту.</p>
         </div>
 
         <div class="row g-5">
             <div class="col-md-7 col-lg-8">
-                <h4 class="mb-3">Personal data</h4>
+                <h4 class="mb-3">Персональные данные</h4>
                 <form  th:action="@{/api/client/addclient}" th:object="${clientDto}" th:method="POST">
                     <div class="row g-3">
                         <div class="col-sm-6">
-                            <label for="login" class="form-label">Login</label>
+                            <label for="login" class="form-label">Логин</label>
                             <input type="text" class="form-control" id="login" th:field="*{login}">
                         </div>
 
                         <div class="col-sm-6">
-                            <label for="password" class="form-label">Password</label>
+                            <label for="password" class="form-label">Пароль</label>
                             <input type="text" class="form-control" id="password" th:field="*{password}">
                         </div>
                         <div class="col-sm-6">
-                            <label for="name" class="form-label">Name</label>
+                            <label for="name" class="form-label">Имя</label>
                             <input type="text" class="form-control" id="name" th:field="*{name}">
                         </div>
 
