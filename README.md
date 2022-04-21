@@ -1,7 +1,7 @@
 # onlineMagazine
 Примитивный сервис для управления и мониторинга онлайн заказов товаров (Курсовая)
-## Схема базы данных
-![Image alt](https://github.com/Aleshawork/onlineMagazine/raw/master/bd_screen.png)
+Сервис не использует ORM, прямая работа с jdbc (базовое условие)
+
 ## Технологии 
 • Spring Boot  
 • Spring JdbcTemplate - используется для классов Repository  
